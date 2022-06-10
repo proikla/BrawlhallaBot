@@ -2,6 +2,13 @@
 BrawlHalla bot for grinding exp and money.
 This bot can be left overnight and it will farm some coins and exp for you.
 
+# Install requirements
+```
+pip install Pillow
+pip install opencv-python
+pip install pyautogui
+```
+
 # How to use
 
 Download code:
