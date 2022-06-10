@@ -1,9 +1,16 @@
+import os
+
 from brawlhalla import *
+from os import *
 
 if __name__ == '__main__':
     # start
+
     # picture of username
-    pic_name = input('Enter the name of the image: ')
+    pics_list = os.listdir('images')
+    pics = " ".join(pics_list)
+    print(f'List of images: {pics}')
+    pic_name = input('Enter the name of the image: ').strip()
     img = f'images/{pic_name}.png'
     sleep(5)
 
