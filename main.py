@@ -1,16 +1,14 @@
 from brawlhalla import *
 
 # start
-
-sleep(1)
+# picture of username
+pic_name = input('Enter the name of the image: ')
+img = f'images/{pic_name}.png'
+sleep(5)
 
 # checking for active window
 if pt.getActiveWindowTitle() == 'Brawlhalla':
     print("Brawlhalla is active")
-
-# picture of username
-pic_name = input('Enter the name of the image: ')
-img = f'images/{pic_name}.png'
 
 # the code will be executed while the active window is 'Brawlhalla'
 while pt.getActiveWindowTitle() == 'Brawlhalla':
