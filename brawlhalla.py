@@ -117,7 +117,7 @@ def check_pos(image):
 def locate_lobby():
     pos = pt.locateCenterOnScreen('images/start.png', confidence=.7)
     if pos is None:
-        pass
+        return 0
     else:
         print('StartMenu located! Trying to start the game..')
         for i in range(10):
@@ -125,7 +125,6 @@ def locate_lobby():
             pt.press('j')
         sleep(15)
         return 1
-    return 0
 
 
 # speaks for itself
