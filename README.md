@@ -49,3 +49,5 @@ Make sure you're using 1920-1080 monitor. Make sure active window is brawlhalla.
 
 *Do not judge strictly, this is my very first project*
 *Apologies for my poor English*
+
+
