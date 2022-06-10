@@ -58,7 +58,35 @@ def get_character_pos(image):
 
 
 # comes back to stage
-def to_stage(key_press, con):
+# def to_stage(key_press, con):
+#     print('OFFSTAGE!')
+#     pt.keyDown(key_press)
+#     print(f'pressed key {key_press}')
+#     move_character('space', .1, 'jumping')
+#     if con is False:
+#         pt.keyUp(key_press)
+#     move_character('space', .1, 'jumping')
+#     if con is False:
+#         pt.keyUp(key_press)
+#     move_character('space', .1, 'jumping')
+#     if con is False:
+#         pt.keyUp(key_press)
+#     move_character('k', .1, 'recovery')
+#     if con is False:
+#         pt.keyUp(key_press)
+#     move_character('w', 0, 'up')
+#     move_character('shift', 0, 'shift')
+#     pt.keyUp(key_press)
+#     if con is False:
+#         pt.keyUp(key_press)
+
+def to_stage(stage, con):
+    if stage == 'left':
+        key_press = 'd'
+    elif stage == 'right':
+        key_press = 'a'
+    else:
+        key_press = ''
     print('OFFSTAGE!')
     pt.keyDown(key_press)
     print(f'pressed key {key_press}')
@@ -99,12 +127,12 @@ def check_pos(image):
             # OFFSTAGE LEFT
             if x < 420:
                 print(type(x))
-                to_stage('d', con=x < 420)
+                to_stage('left', con=x < 420)
                 break
             # OFFSTAGE RIGHT
             elif x > 1500:
                 print(type(x))
-                to_stage('a', con=x > 1500)
+                to_stage('right', con=x > 1500)
                 break
             elif x > 420 or x < 1500:
                 attack()

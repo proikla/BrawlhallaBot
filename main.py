@@ -28,29 +28,7 @@ if __name__ == '__main__':
         if locate_lobby() == 0:
             while True:
                 pos = get_character_pos(img)
-                # image not found
-                if pos is None:
-                    move_character('space', .1, 'jumping')
-                    break
-                # image found
-                else:
-                    x = pos.x
-                    y = pos.y
-                    print('X = ', x)
-                    print('Y = ', y, '\n')
-                    # offstage left
-                    if x < 420:
-                        to_stage('d', con=x < 420)
-                        print(type(x))
-                        break
-                    # offstage right
-                    elif x > 1500:
-                        to_stage('a', con=x > 1500)
-                        print(type(x))
-                        break
-                    elif x > 420 or x < 1500:
-                        attack()
-                        break
+                check_pos(img)
         # otherwise, the locateGameStart() function will start a new game.
         else:
             print('Starting new game')
