@@ -109,14 +109,6 @@ def check_pos(image):
             elif x > 420 or x < 1500:
                 attack()
                 break
-            # UNDER 530
-            # if y > 530:
-            #     pt.keyDown('a')
-            #     moveCharacter('space', .1, 'jumping')
-            #     moveCharacter('space', .1, 'jumping')
-            #     moveCharacter('space', .1, 'jumping')
-            #     moveCharacter('k', .1, 'recovery')
-            #     pt.keyUp('a')
             break
     return 0
 
