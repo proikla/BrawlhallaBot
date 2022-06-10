@@ -1,42 +1,47 @@
-import pyautogui as pt
-from time import sleep
+from brawlhalla import *
 
-import brawlhalla as bh
-#start
+# start
+
 sleep(1)
+
+# checking for active window
 if pt.getActiveWindowTitle() == 'Brawlhalla':
     print("Brawlhalla is active")
-img = 'images/bor_1.png'
-point = bh.getCharacterPos(img)
+
+# picture of username
+pic_name = input('Enter the name of the image: ')
+img = f'images/{pic_name}.png'
+
+# the code will be executed while the active window is "Brawlhalla"
 while pt.getActiveWindowTitle() == 'Brawlhalla':
-    sleep(.0)
-    if bh.locateGameStart() == 0:
-        point = bh.getCharacterPos(img)
+    # if we are not in menu
+    if locateGameStart() == 0:
         while True:
-            pos = bh.getCharacterPos(img)
+            pos = getCharacterPos(img)
             print(pos)
-            # IMAGE NOT FOUND
+            # image not found
             if pos is None:
-                bh.moveCharacter('space', .1, 'jumping')
+                moveCharacter('space', .1, 'jumping')
                 break
-            # IMAGE FOUND
+            # image found
             else:
                 x = pos.x
                 y = pos.y
-                print('X=', x)
-                print('Y=', y, '\n')
-                # OFFSTAGE LEFT
+                print('X = ', x)
+                print('Y = ', y, '\n')
+                # offstage left
                 if x < 420:
-                    bh.toStage('d', con=x < 420)
+                    toStage('d', con=x < 420)
                     print(type(x))
                     break
-                # OFFSTAGE RIGHT
+                # offstage right
                 elif x > 1500:
-                    bh.toStage('a', con=x > 1500)
+                    toStage('a', con=x > 1500)
                     print(type(x))
                     break
                 elif x > 420 or x < 1500:
-                    bh.attack()
+                    attack()
                     break
+    # otherwise, the locateGameStart() function will start a new game.
     else:
         print('Starting new game')

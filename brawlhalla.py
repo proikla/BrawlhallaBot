@@ -1,6 +1,7 @@
 import pyautogui as pt
 from time import sleep
 
+#перемещает курсор к картинке
 def nav_to_image(image, clicks, offx=0, offy=0):
     pos = pt.locateCenterOnScreen(image, confidence=.7)
     if pos is None:
@@ -10,6 +11,7 @@ def nav_to_image(image, clicks, offx=0, offy=0):
         pt.moveTo(pos, duration=.1)
         pt.moveRel(offx, offy, duration=.1)
         pt.click(clicks=clicks, interval=.3)
+#выходим из паузы
 def locate_menu():
     pos = pt.locateCenterOnScreen('images/resume.png', confidence=.7)
     if pos is None:
@@ -21,6 +23,7 @@ def locate_menu():
     else:
         nav_to_image('images/resume.png', 3)
         return 1
+#движение персонажа
 def moveCharacter(key_press, duration, action='walking'):
     pt.keyDown(key_press)
     if action == 'walking':
@@ -37,6 +40,7 @@ def moveCharacter(key_press, duration, action='walking'):
         print('up')
     sleep(duration)
     pt.keyUp(key_press)
+#получение позиции персонажа
 def getCharacterPos(image):
     pos = pt.locateCenterOnScreen(image,confidence=.7)
     if pos is None:
@@ -44,6 +48,7 @@ def getCharacterPos(image):
         return None
     else:
         return pos
+#возвращение на стейдж
 def toStage(key_press, con):
     print('OFFSTAGE!')
     pt.keyDown(key_press)
@@ -65,6 +70,7 @@ def toStage(key_press, con):
     pt.keyUp(key_press)
     if con is False:
         pt.keyUp(key_press)
+#проверка позиции
 def checkPos(image):
     while True:
         pos = getCharacterPos(image)
@@ -102,6 +108,7 @@ def checkPos(image):
             #     pt.keyUp('a')
             break
     return 0
+#проверка на нахождение в меню
 def locateGameStart():
     pos = pt.locateCenterOnScreen('images/start.png', confidence=.7)
     if pos is None:
@@ -114,6 +121,7 @@ def locateGameStart():
         sleep(15)
         return 1
     return 0
+#атака
 def attack():
     pt.keyDown('d')
     pt.press('shift')
