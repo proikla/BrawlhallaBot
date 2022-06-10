@@ -32,17 +32,17 @@ def locate_menu():
 def move_character(key_press, duration, action):
     pt.keyDown(key_press)
     if action == 'walking':
-        print('Walking')
+        print('Walking\n')
     if action == 'jumping':
-        print('Jumping')
+        print('Jumping\n')
     if action == 'recovery':
-        print('Recovery')
+        print('Recovery\n')
     if action == 'attack':
-        print('attack')
+        print('attack\n')
     if action == 'shift':
-        print('shift')
+        print('shift\n')
     if action == 'up':
-        print('up')
+        print('up\n')
     sleep(duration)
     pt.keyUp(key_press)
 
@@ -74,8 +74,8 @@ def to_stage(key_press, con):
     move_character('k', .1, 'recovery')
     if con is False:
         pt.keyUp(key_press)
-    move_character('shift', 0, 'shift')
     move_character('w', 0, 'up')
+    move_character('shift', 0, 'shift')
     pt.keyUp(key_press)
     if con is False:
         pt.keyUp(key_press)
