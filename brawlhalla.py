@@ -1,8 +1,9 @@
 import pyautogui as pt
 from time import sleep
 
-#перемещает курсор к картинке
-def nav_to_image(image, clicks, offx=0, offy=0):
+
+# moves cursor to image
+def navigate_to(image, clicks, offx=0, offy=0):
     pos = pt.locateCenterOnScreen(image, confidence=.7)
     if pos is None:
         print(f'{image} not found..')
@@ -11,7 +12,9 @@ def nav_to_image(image, clicks, offx=0, offy=0):
         pt.moveTo(pos, duration=.1)
         pt.moveRel(offx, offy, duration=.1)
         pt.click(clicks=clicks, interval=.3)
-#выходим из паузы
+
+
+# exiting the pause
 def locate_menu():
     pos = pt.locateCenterOnScreen('images/resume.png', confidence=.7)
     if pos is None:
@@ -21,10 +24,12 @@ def locate_menu():
         sleep(2)
         return None
     else:
-        nav_to_image('images/resume.png', 3)
+        navigate_to('images/resume.png', 3)
         return 1
-#движение персонажа
-def moveCharacter(key_press, duration, action='walking'):
+
+
+# moves character
+def move_character(key_press, duration, action='walking'):
     pt.keyDown(key_press)
     if action == 'walking':
         print('Walking')
@@ -40,44 +45,50 @@ def moveCharacter(key_press, duration, action='walking'):
         print('up')
     sleep(duration)
     pt.keyUp(key_press)
-#получение позиции персонажа
-def getCharacterPos(image):
-    pos = pt.locateCenterOnScreen(image,confidence=.7)
+
+
+# getting position of the character
+def get_character_pos(image):
+    pos = pt.locateCenterOnScreen(image, confidence=.7)
     if pos is None:
         print(f'{image} not found..')
         return None
     else:
         return pos
-#возвращение на стейдж
-def toStage(key_press, con):
+
+
+# comes back to stage
+def to_stage(key_press, con):
     print('OFFSTAGE!')
     pt.keyDown(key_press)
     print(f'pressed key {key_press}')
-    moveCharacter('space', .1, 'jumping')
+    move_character('space', .1, 'jumping')
     if con is False:
         pt.keyUp(key_press)
-    moveCharacter('space', .1, 'jumping')
+    move_character('space', .1, 'jumping')
     if con is False:
         pt.keyUp(key_press)
-    moveCharacter('space', .1, 'jumping')
+    move_character('space', .1, 'jumping')
     if con is False:
         pt.keyUp(key_press)
-    moveCharacter('k', .1, 'recovery')
+    move_character('k', .1, 'recovery')
     if con is False:
         pt.keyUp(key_press)
-    moveCharacter('shift', 0, 'shift')
-    moveCharacter('w', 0, 'up')
+    move_character('shift', 0, 'shift')
+    move_character('w', 0, 'up')
     pt.keyUp(key_press)
     if con is False:
         pt.keyUp(key_press)
-#проверка позиции
-def checkPos(image):
+
+
+# checking position
+def check_pos(image):
     while True:
-        pos = getCharacterPos(image)
+        pos = get_character_pos(image)
         print(pos)
         # IMAGE NOT FOUND
         if pos == None:
-            moveCharacter('space', .1, 'jumping')
+            move_character('space', .1, 'jumping')
             break
         # IMAGE FOUND
         else:
@@ -88,12 +99,12 @@ def checkPos(image):
             # OFFSTAGE LEFT
             if x < 420:
                 print(type(x))
-                toStage('d', con=x<420)
+                to_stage('d', con=x < 420)
                 break
             # OFFSTAGE RIGHT
             elif x > 1500:
                 print(type(x))
-                toStage('a', con=x>1500)
+                to_stage('a', con=x > 1500)
                 break
             elif x > 420 or x < 1500:
                 attack()
@@ -108,8 +119,10 @@ def checkPos(image):
             #     pt.keyUp('a')
             break
     return 0
-#проверка на нахождение в меню
-def locateGameStart():
+
+
+# checking for being in the lobby
+def locate_lobby():
     pos = pt.locateCenterOnScreen('images/start.png', confidence=.7)
     if pos is None:
         pass
@@ -121,16 +134,18 @@ def locateGameStart():
         sleep(15)
         return 1
     return 0
-#атака
+
+
+# speaks for itself
 def attack():
     pt.keyDown('d')
     pt.press('shift')
-    moveCharacter('k',.0,'attack')
+    move_character('k', .0, 'attack')
     pt.keyUp('d')
     pt.press('h')
     sleep(.5)
     pt.keyDown('a')
     pt.press('shift')
-    moveCharacter('k', .0, 'attack')
+    move_character('k', .0, 'attack')
     pt.keyUp('a')
     pt.press('h')
