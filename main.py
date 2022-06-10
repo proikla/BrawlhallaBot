@@ -13,7 +13,6 @@ if __name__ == '__main__':
         if locate_lobby() == 0:
             while True:
                 pos = get_character_pos(img)
-                print(pos)
                 # image not found
                 if pos is None:
                     move_character('space', .1, 'jumping')
