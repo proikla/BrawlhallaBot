@@ -13,7 +13,7 @@ Download code:
 
 https://github.com/proikla/BrawlhallaBot/archive/refs/heads/master.zip
 
-And unzip it wherever you want
+Unzip it wherever you want
 
 Then you have to open brawlhalla, set these settings : 
 
@@ -48,9 +48,9 @@ the image must be in .png format
 
 Put this image to BrawlhallaBot/images
 
-Once you have set up the lobby and started the game at the Big Thunderguard Stadium, start 'main.py', enter the name of the picture and switch to the brawlhalla window. The script will be executed while the active window is brawlhalla.
+Once you have set up the lobby and started the game at the Big Thundergard Stadium, start 'main.py', enter the name of the picture and switch to the brawlhalla window. The script will be executed while the active window is brawlhalla.
 
-Make sure you're using 1920-1080 monitor. Make sure active window is brawlhalla. Make sure you are using Maximised mode. Make sure attack key is 'J', Heavy attack key is 'K', Aim Up key is 'W', Jump key is 'SPACE'.
+Make sure you're using FullHd monitor (1920x1080). Make sure active window is brawlhalla. Make sure you are using Maximised mode. Make sure attack key is 'J', Heavy attack key is 'K', Aim Up key is 'W', Jump key is 'SPACE'.
 
 Apologies for my poor English
 
