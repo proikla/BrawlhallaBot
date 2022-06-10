@@ -2,8 +2,22 @@
 BrawlHalla bot for grinding exp and money.
 This bot can be left overnight and it will farm some coins and exp for you.
 
+# Install requirements
+```
+pip install Pillow
+pip install opencv-python
+pip install pyautogui
+```
+
 # How to use
-You have to open brawlhalla, set these settings : 
+
+Download code:
+
+https://github.com/proikla/BrawlhallaBot/archive/refs/heads/master.zip
+
+And unzip it wherever you want
+
+Then you have to open brawlhalla, set these settings : 
 
 ![image](https://user-images.githubusercontent.com/58581541/173115585-36379276-1431-4742-9834-d36277c62ce0.png)(Display mode: maximized, Camera mode: fixed, Player names: only you)
 
@@ -39,3 +53,7 @@ Put this image to BrawlhallaBot/images
 Once you have set up the lobby and started the game at the Big Thunderguard Stadium, start 'main.py', enter the name of the picture and switch to the brawlhalla window. The script will be executed while the active window is brawlhalla.
 
 Make sure you're using 1920-1080 monitor. Make sure active window is brawlhalla. Make sure you are using Maximised mode. Make sure attack key is 'J', Heavy attack key is 'K', Aim Up key is 'W', Jump key is 'SPACE'.
+
+Apologies for my poor English
+
+*Do not judge strictly, this is my very first project*
