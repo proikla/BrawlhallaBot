@@ -1,6 +1,6 @@
 # BrawlhallaBot
 BrawlHalla bot for grinding exp and money.
-This bot can be left overnight and it will farm some coins and exp for you.
+This bot can farm some coins and exp while you sleep
 
 # Install requirements
 ```
