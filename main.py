@@ -15,13 +15,13 @@ img = f'images/{pic_name}.png'
 # the code will be executed while the active window is "Brawlhalla"
 while pt.getActiveWindowTitle() == 'Brawlhalla':
     # if we are not in menu
-    if locateGameStart() == 0:
+    if locate_lobby() == 0:
         while True:
-            pos = getCharacterPos(img)
+            pos = get_character_pos(img)
             print(pos)
             # image not found
             if pos is None:
-                moveCharacter('space', .1, 'jumping')
+                move_character('space', .1, 'jumping')
                 break
             # image found
             else:
@@ -31,12 +31,12 @@ while pt.getActiveWindowTitle() == 'Brawlhalla':
                 print('Y = ', y, '\n')
                 # offstage left
                 if x < 420:
-                    toStage('d', con=x < 420)
+                    to_stage('d', con=x < 420)
                     print(type(x))
                     break
                 # offstage right
                 elif x > 1500:
-                    toStage('a', con=x > 1500)
+                    to_stage('a', con=x > 1500)
                     print(type(x))
                     break
                 elif x > 420 or x < 1500:
