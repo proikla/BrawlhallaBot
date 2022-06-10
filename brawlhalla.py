@@ -1,7 +1,6 @@
 import pyautogui as pt
 from time import sleep
 
-
 # moves cursor to image
 def navigate_to(image, clicks, off_x=0, off_y=0):
     pos = pt.locateCenterOnScreen(image, confidence=.7)
