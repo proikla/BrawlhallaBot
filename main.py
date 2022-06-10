@@ -6,10 +6,6 @@ pic_name = input('Enter the name of the image: ')
 img = f'images/{pic_name}.png'
 sleep(5)
 
-# checking for active window
-if pt.getActiveWindowTitle() == 'Brawlhalla':
-    print("Brawlhalla is active")
-
 # the code will be executed while the active window is 'Brawlhalla'
 while pt.getActiveWindowTitle() == 'Brawlhalla':
     # if we are not in menu
@@ -43,3 +39,5 @@ while pt.getActiveWindowTitle() == 'Brawlhalla':
     # otherwise, the locateGameStart() function will start a new game.
     else:
         print('Starting new game')
+print("Brawlhalla isn't active!")
+sleep(2)
