@@ -4,9 +4,7 @@ This bot can farm some coins and exp while you sleep
 
 # Install requirements
 ```
-pip install Pillow
-pip install opencv-python
-pip install pyautogui
+pip install Pillow opencv-python pyautogui
 ```
 
 # How to use
