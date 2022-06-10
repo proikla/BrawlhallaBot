@@ -38,4 +38,4 @@ Put this image to BrawlhallaBot/images
 
 Start 'main.py', enter the name of the picture and switch to the brawlhalla window. The script will be executed while the active window is brawlhalla.
 
-Make sure you're using 1920-1080 monitor. Make sure active window is brawlhalla. Make sure attack key is 'J', Heavy attack key is 'K', Aim Up key is 'W', Jump key is 'SPACE'.
+Make sure you're using 1920-1080 monitor. Make sure active window is brawlhalla. Make sure you are using Maximised mode. Make sure attack key is 'J', Heavy attack key is 'K', Aim Up key is 'W', Jump key is 'SPACE'.
