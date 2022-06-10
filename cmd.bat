@@ -1,1 +1,1 @@
-cmd
+python main.py
