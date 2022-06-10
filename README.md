@@ -5,7 +5,7 @@ This bot can be left overnight and it will farm some coins and exp for you.
 # How to use
 You have to open brawlhalla, set these settings : 
 
-![image](https://user-images.githubusercontent.com/58581541/173115585-36379276-1431-4742-9834-d36277c62ce0.png)(Display mode: maximized, Camera mode: fixed)
+![image](https://user-images.githubusercontent.com/58581541/173115585-36379276-1431-4742-9834-d36277c62ce0.png)(Display mode: maximized, Camera mode: fixed, Player names: only you)
 
 then go to Custom Game Room > Create Room > Private Room, then choose your character. 
 Then you need to setup your lobby. The optimal settings are:
