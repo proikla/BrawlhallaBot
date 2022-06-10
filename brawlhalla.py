@@ -3,14 +3,14 @@ from time import sleep
 
 
 # moves cursor to image
-def navigate_to(image, clicks, offx=0, offy=0):
+def navigate_to(image, clicks, off_x=0, off_y=0):
     pos = pt.locateCenterOnScreen(image, confidence=.7)
     if pos is None:
         print(f'{image} not found..')
         return 0
     else:
         pt.moveTo(pos, duration=.1)
-        pt.moveRel(offx, offy, duration=.1)
+        pt.moveRel(off_x, off_y, duration=.1)
         pt.click(clicks=clicks, interval=.3)
 
 
@@ -29,7 +29,7 @@ def locate_menu():
 
 
 # moves character
-def move_character(key_press, duration, action='walking'):
+def move_character(key_press, duration, action):
     pt.keyDown(key_press)
     if action == 'walking':
         print('Walking')
@@ -87,7 +87,7 @@ def check_pos(image):
         pos = get_character_pos(image)
         print(pos)
         # IMAGE NOT FOUND
-        if pos == None:
+        if pos is None:
             move_character('space', .1, 'jumping')
             break
         # IMAGE FOUND
