@@ -12,7 +12,7 @@ if pt.getActiveWindowTitle() == 'Brawlhalla':
 pic_name = input('Enter the name of the image: ')
 img = f'images/{pic_name}.png'
 
-# the code will be executed while the active window is "Brawlhalla"
+# the code will be executed while the active window is 'Brawlhalla'
 while pt.getActiveWindowTitle() == 'Brawlhalla':
     # if we are not in menu
     if locate_lobby() == 0:
