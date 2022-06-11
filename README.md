@@ -23,7 +23,7 @@ cd BrawlhallaBot
 pip install -r requirements.txt
 ```
 
-#### Brawlhalla settings
+### Brawlhalla settings
 Open brawlhalla, set these settings: 
 
 ![image](https://user-images.githubusercontent.com/58581541/173115585-36379276-1431-4742-9834-d36277c62ce0.png)(Display mode: maximized, Camera mode: fixed, Player names: only you)
