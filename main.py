@@ -5,7 +5,7 @@ from brawlhalla import *
 
 def get_img():
     while True:
-        tprint('BrawlHallaBot', 'varsity')
+        tprint('BrawlHallaBot', 'stop')
         service = ['start.png', 'resume.png']
         pics_list = os.listdir('images')
         for i in range(len(service)):
@@ -17,7 +17,6 @@ def get_img():
             pic_name = pic_name.strip('.png')
         image = f'images/{pic_name}.png'
         return image
-
 
 
 if __name__ == '__main__':
@@ -35,7 +34,6 @@ You chose {img}
         # if we are not in menu
         if locate_lobby() == 0:
             while True:
-                pos = get_character_pos(img) # попробуй закомментить, мне кажется это бесполезно
                 check_pos(img)
         # otherwise, the locateGameStart() function will start a new game.
         else:
