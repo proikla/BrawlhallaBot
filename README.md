@@ -2,7 +2,7 @@
 BrawlHalla bot for grinding exp and money.
 This bot can farm some coins and exp while you sleep
 
-# Set up
+## Set up
 ### Install git
 https://github.com/git-guides/install-git
 ### Clone project
@@ -15,7 +15,7 @@ cd BrawlhallaBot
 pip install -r requirements.txt
 ```
 
-# How to use
+## How to use
 
 Download code:
 
