@@ -6,7 +6,7 @@ from brawlhalla import *
 def get_img():
     while True:
         tprint('BrawlHallaBot', 'stop')
-        service = ['start.png', 'resume.png']
+        service = ['start.png', 'resume.png', 'x_settings.png', 'chat.png', 'map.png']
         pics_list = os.listdir('images')
         for i in range(len(service)):
             pics_list.remove(service[i])
