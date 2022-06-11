@@ -16,15 +16,14 @@ https://github.com/git-guides/install-git
 ### Clone project
 ```
 git clone https://github.com/proikla/BrawlhallaBot 
-cd BrawlhallaBot
 ```
 ### Install requirements
 ```
+cd BrawlhallaBot
 pip install -r requirements.txt
 ```
 
-## How to use
-#### Brawlhalla settings
+### Brawlhalla settings
 Open brawlhalla, set these settings: 
 
 ![image](https://user-images.githubusercontent.com/58581541/173115585-36379276-1431-4742-9834-d36277c62ce0.png)(Display mode: maximized, Camera mode: fixed, Player names: only you)
@@ -57,6 +56,8 @@ And crop it like this
 the image must be in .png format
 
 Put this image to BrawlhallaBot/images
+
+## How to use
 
 #### Start script
 
