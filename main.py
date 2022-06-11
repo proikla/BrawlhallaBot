@@ -34,7 +34,7 @@ You chose {img}
         # if we are not in menu
         if locate_lobby() == 0:
             while True:
-                check_pos(img)
+                pos_check(img)
         # otherwise, the locateGameStart() function will start a new game.
         else:
             print('Starting new game')

@@ -14,7 +14,7 @@ def navigate_to(image, clicks, off_x=0, off_y=0):
         pt.click(clicks=clicks, interval=.3)
 
 
-# exiting the pause
+# exiting the pause (unused)
 def locate_menu():
     pos = pt.locateCenterOnScreen('images/resume.png', confidence=.7)
     if pos is None:
@@ -28,7 +28,7 @@ def locate_menu():
 
 
 # moves character
-def move_character(key_press, duration, action):
+def do_input(key_press, duration, action):
     pt.keyDown(key_press)
     if action == 'jumping':
         print('Jumping\n')
@@ -62,36 +62,36 @@ def to_stage(stage, con):
         key_press = 'a'
     else:
         key_press = ''
-    print('OFFSTAGE!')
+    print('Character on offstage')
     pt.keyDown(key_press)
     print(f'pressed key {key_press}')
-    move_character('space', .1, 'jumping')
+    do_input('space', .1, 'jumping')
     if con is False:
         pt.keyUp(key_press)
-    move_character('space', .1, 'jumping')
+    do_input('space', .1, 'jumping')
     if con is False:
         pt.keyUp(key_press)
-    move_character('space', .1, 'jumping')
+    do_input('space', .1, 'jumping')
     if con is False:
         pt.keyUp(key_press)
-    move_character('k', .1, 'recovery')
+    do_input('k', .1, 'recovery')
     if con is False:
         pt.keyUp(key_press)
-    move_character('w', 0, 'up')
-    move_character('shift', 0, 'shift')
+    do_input('w', 0, 'up')
+    do_input('shift', 0, 'shift')
     pt.keyUp(key_press)
     if con is False:
         pt.keyUp(key_press)
 
 
-# checking position
-def check_pos(image):
+# checking character position
+def pos_check(image):
     while True:
         pos = get_character_pos(image)
         print(pos)
         # IMAGE NOT FOUND
         if pos is None:
-            move_character('space', .1, 'jumping')
+            do_input('space', .1, 'jumping')
             break
         # IMAGE FOUND
         else:
@@ -101,12 +101,10 @@ def check_pos(image):
             print('Y =', y, '\n')
             # OFFSTAGE LEFT
             if x < 420:
-                print(type(x))
                 to_stage('left', con=x < 420)
                 break
             # OFFSTAGE RIGHT
             elif x > 1500:
-                print(type(x))
                 to_stage('right', con=x > 1500)
                 break
             elif x > 420 or x < 1500:
@@ -134,12 +132,12 @@ def locate_lobby():
 def attack():
     pt.keyDown('d')
     pt.press('shift')
-    move_character('k', .0, 'attack')
+    do_input('k', .0, 'attack')
     pt.keyUp('d')
     pt.press('h')
     sleep(.5)
     pt.keyDown('a')
     pt.press('shift')
-    move_character('k', .0, 'attack')
+    do_input('k', .0, 'attack')
     pt.keyUp('a')
     pt.press('h')
