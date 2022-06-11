@@ -16,7 +16,11 @@ def get_img():
         if pic_name.__contains__('.png'):
             pic_name = pic_name.strip('.png')
         image = f'images/{pic_name}.png'
-        return image
+        if pics_list.__contains__(f'{pic_name}.png'):
+            return image
+        else:
+            print('This image is not exist')
+            return None
 
 
 if __name__ == '__main__':
@@ -28,7 +32,7 @@ if __name__ == '__main__':
 You chose {img}
 ''')
     sleep(3)
-
+    # lobby_setup()
     # the code will be executed while the active window is 'Brawlhalla'
     while pt.getActiveWindowTitle() == 'Brawlhalla':
         # if we are not in menu
@@ -38,5 +42,6 @@ You chose {img}
         # otherwise, the locateGameStart() function will start a new game.
         else:
             print('Starting new game')
+            locate_map_pic()
     print("Brawlhalla isn't active!")
     sleep(2)
