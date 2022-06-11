@@ -23,7 +23,6 @@ cd BrawlhallaBot
 pip install -r requirements.txt
 ```
 
-## How to use
 #### Brawlhalla settings
 Open brawlhalla, set these settings: 
 
@@ -57,6 +56,8 @@ And crop it like this
 the image must be in .png format
 
 Put this image to BrawlhallaBot/images
+
+## How to use
 
 #### Start script
 
