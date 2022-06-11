@@ -2,6 +2,14 @@
 BrawlHalla bot for grinding exp and money.
 This bot can farm some coins and exp while you sleep
 
+![image](https://user-images.githubusercontent.com/58581541/173185294-d33aad46-3b42-4788-a22b-69c82fb99547.png)
+
+This simple python script searches for an image of your name in brawlhalla and manipulates your character based on the coordinates of the image.
+
+If you are on the "stage", the script will attack, but when you are "offstage", the script will return to the stage.
+
+When the match is over script will start a new one.
+
 ## Set up
 ### Install git
 https://github.com/git-guides/install-git
