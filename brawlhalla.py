@@ -9,13 +9,23 @@ def navigate_to(image, clicks, off_x=0, off_y=0):
         print(f'{image} not found..')
         return 0
     else:
+        print(f'Moving to {image}')
         pt.moveTo(pos, duration=.1)
         pt.moveRel(off_x, off_y, duration=.1)
         pt.click(clicks=clicks, interval=.3)
 
 
+# def image_check(image):
+#     if image is None:
+#         print("resume.png not found")
+#         print('Trying to open the menu')
+#         sleep(2)
+#         return None
+#     else:
+#         navigate_to('images/resume.png', 3)
+#         return 1
 # exiting the pause (unused)
-def locate_menu():
+def locate_pause_menu():
     pos = pt.locateCenterOnScreen('images/resume.png', confidence=.7)
     if pos is None:
         print("resume.png not found")
@@ -28,7 +38,7 @@ def locate_menu():
 
 
 # moves character
-def do_input(key_press, duration, action):
+def do_input(key_press, duration, action=''):
     pt.keyDown(key_press)
     if action == 'jumping':
         print('Jumping\n')
@@ -114,6 +124,13 @@ def pos_check(image):
     return 0
 
 
+def locate_map_pic():
+    print('Trying to find map.png on screen')
+    map_pic = 'images/map.png'
+    navigate_to(map_pic, 5)
+    pt.press('j')
+
+
 # checking for being in the lobby
 def locate_lobby():
     pos = pt.locateCenterOnScreen('images/start.png', confidence=.7)
@@ -121,10 +138,11 @@ def locate_lobby():
         return 0
     else:
         print('StartMenu located! Trying to start the game..')
-        for i in range(10):
+        sleep(5)
+        for i in range(6):
             sleep(.1)
             pt.press('j')
-        sleep(15)
+        sleep(2)
         return 1
 
 
@@ -141,3 +159,62 @@ def attack():
     do_input('k', .0, 'attack')
     pt.keyUp('a')
     pt.press('h')
+
+
+def add_bots():
+    pt.press('v')
+    duration = .4
+    sleep(duration)
+    for _ in range(7):
+        pt.press('j')
+        sleep(duration)
+        pt.press('j')
+        sleep(duration)
+        pt.press('s')
+        sleep(duration)
+        pt.press('a')
+        sleep(duration)
+        pt.press('j')
+        sleep(duration)
+        pt.press('s')
+        sleep(duration)
+    sleep(duration)
+    pt.press('v')
+
+
+def lobby_setup():
+    settings_image = pt.locateCenterOnScreen('images/x_settings.png', confidence=.7)
+    if settings_image is None:
+        print(f'x_settings.png not found..')
+        return None
+    else:
+        duration = .0
+        # open settings tab
+        pt.press('x')
+        for _ in range(2):
+            pt.press('s')
+            sleep(duration)
+        # lives
+        for _ in range(3):
+            pt.press('a')
+            sleep(duration)
+        pt.press('s')
+        # match time
+        for _ in range(8):
+            pt.press('a')
+            sleep(duration)
+        pt.press('s')
+        # damage
+        for _ in range(6):
+            pt.press('a')
+            sleep(duration)
+        for _ in range(5):
+            pt.press('s')
+            sleep(duration)
+        for _ in range(3):
+            pt.press('a')
+            sleep(duration)
+        pt.press('j')
+        pt.press('j')
+        pt.press('j')
+        add_bots()
