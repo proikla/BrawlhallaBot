@@ -16,14 +16,8 @@ pip install -r requirements.txt
 ```
 
 ## How to use
-
-Download code:
-
-https://github.com/proikla/BrawlhallaBot/archive/refs/heads/master.zip
-
-Unzip it wherever you want
-
-Then you have to open brawlhalla, set these settings : 
+#### Brawlhalla settings
+Open brawlhalla, set these settings : 
 
 ![image](https://user-images.githubusercontent.com/58581541/173115585-36379276-1431-4742-9834-d36277c62ce0.png)(Display mode: maximized, Camera mode: fixed, Player names: only you)
 
@@ -55,6 +49,8 @@ And crop it like this
 the image must be in .png format
 
 Put this image to BrawlhallaBot/images
+
+#### Start script
 
 Once you have set up the lobby and started the game at the Big Thundergard Stadium, start 'main.py':
 ```
