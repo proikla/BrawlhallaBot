@@ -1,9 +1,8 @@
 import os
-
 from brawlhalla import *
 
 
-def pic():
+def get_img():
     banned = ['start.png', 'resume.png']
     pics_list = os.listdir('images')
     for i in range(len(banned)):
@@ -19,15 +18,15 @@ if __name__ == '__main__':
     # start
 
     # picture of username
-    img = pic()
-    sleep(5)
+    img = get_img()
+    sleep(3)
 
     # the code will be executed while the active window is 'Brawlhalla'
     while pt.getActiveWindowTitle() == 'Brawlhalla':
         # if we are not in menu
         if locate_lobby() == 0:
             while True:
-                pos = get_character_pos(img)
+                pos = get_character_pos(img) # попробуй закомментить, мне кажется это бесполезно
                 check_pos(img)
         # otherwise, the locateGameStart() function will start a new game.
         else:

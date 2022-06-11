@@ -20,7 +20,6 @@ def locate_menu():
     if pos is None:
         print("resume.png not found")
         print('Trying to open the menu')
-
         sleep(2)
         return None
     else:
@@ -31,8 +30,6 @@ def locate_menu():
 # moves character
 def move_character(key_press, duration, action):
     pt.keyDown(key_press)
-    if action == 'walking':
-        print('Walking\n')
     if action == 'jumping':
         print('Jumping\n')
     if action == 'recovery':
@@ -58,28 +55,6 @@ def get_character_pos(image):
 
 
 # comes back to stage
-# def to_stage(key_press, con):
-#     print('OFFSTAGE!')
-#     pt.keyDown(key_press)
-#     print(f'pressed key {key_press}')
-#     move_character('space', .1, 'jumping')
-#     if con is False:
-#         pt.keyUp(key_press)
-#     move_character('space', .1, 'jumping')
-#     if con is False:
-#         pt.keyUp(key_press)
-#     move_character('space', .1, 'jumping')
-#     if con is False:
-#         pt.keyUp(key_press)
-#     move_character('k', .1, 'recovery')
-#     if con is False:
-#         pt.keyUp(key_press)
-#     move_character('w', 0, 'up')
-#     move_character('shift', 0, 'shift')
-#     pt.keyUp(key_press)
-#     if con is False:
-#         pt.keyUp(key_press)
-
 def to_stage(stage, con):
     if stage == 'left':
         key_press = 'd'
