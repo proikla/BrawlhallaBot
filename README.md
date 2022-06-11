@@ -16,10 +16,10 @@ https://github.com/git-guides/install-git
 ### Clone project
 ```
 git clone https://github.com/proikla/BrawlhallaBot 
-cd BrawlhallaBot
 ```
 ### Install requirements
 ```
+cd BrawlhallaBot
 pip install -r requirements.txt
 ```
 
