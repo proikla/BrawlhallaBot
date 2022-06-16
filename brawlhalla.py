@@ -11,8 +11,10 @@ def navigate_to(image, clicks, off_x=0, off_y=0):
     else:
         print(f'Moving to {image}')
         pt.moveTo(pos, duration=.1)
-        pt.moveRel(off_x, off_y, duration=.1)
-        pt.click(clicks=clicks, interval=.3)
+        pt.moveRel(pos, duration=.1)
+        sleep(1)
+        pt.click(clicks=clicks, interval=.1)
+        pt.click()
 
 
 def image_check(image):
@@ -43,15 +45,15 @@ def locate_pause_menu():
 def do_input(key_press, duration, action=''):
     pt.keyDown(key_press)
     if action == 'jumping':
-        print('Jumping\n')
+        print('Jumping')
     if action == 'recovery':
-        print('Recovery\n')
+        print('Recovery')
     if action == 'attack':
-        print('attack\n')
+        print('attack')
     if action == 'shift':
-        print('shift\n')
+        print('shift')
     if action == 'up':
-        print('up\n')
+        print('up')
     sleep(duration)
     pt.keyUp(key_press)
 
@@ -100,7 +102,6 @@ def to_stage(stage, con):
 def pos_check(image):
     while True:
         pos = get_character_pos(image)
-        print(pos)
         # IMAGE NOT FOUND
         if pos is None:
             do_input('space', .1, 'jumping')
@@ -110,7 +111,7 @@ def pos_check(image):
             x = pos.x
             y = pos.y
             print('X =', x)
-            print('Y =', y, '\n')
+            print('Y =', y)
             # OFFSTAGE LEFT
             if x < 420:
                 to_stage('left', con=x < 420)
@@ -130,8 +131,8 @@ def pos_check(image):
 def locate_map_pic():
     print('Trying to find map.png on screen')
     map_pic = 'images/map.png'
-    navigate_to(map_pic, 5)
-    pt.press('j')
+    navigate_to(map_pic, 15)
+    sleep(.3)
 
 
 # checking for being in the lobby
@@ -141,10 +142,13 @@ def locate_lobby():
         return 0
     else:
         print('StartMenu located! Trying to start the game..')
-        sleep(5)
-        for i in range(6):
+        sleep(2)
+        locate_map_pic()
+        sleep(2)
+        for i in range(3):
             sleep(.1)
             pt.press('j')
+            print('pressed j')
         sleep(2)
         return 1
 

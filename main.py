@@ -1,4 +1,6 @@
 import os
+
+import pyautogui
 from art import tprint
 from brawlhalla import *
 
@@ -33,8 +35,8 @@ You chose {img}
     # lobby_setup()
     # the code will be executed while the active window is 'Brawlhalla'
     while pt.getActiveWindowTitle() == 'Brawlhalla':
-        locate_lobby()
-        locate_map_pic()
+        if locate_lobby() == 0:
+            locate_map_pic()
         pos_check(img)
     print("Brawlhalla isn't active!")
     sleep(2)
