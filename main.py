@@ -25,8 +25,6 @@ def get_img():
 
 if __name__ == '__main__':
     # start
-
-    # picture of username
     img = get_img()
     print(f'''
 You chose {img}
@@ -35,13 +33,8 @@ You chose {img}
     # lobby_setup()
     # the code will be executed while the active window is 'Brawlhalla'
     while pt.getActiveWindowTitle() == 'Brawlhalla':
-        # if we are not in menu
-        if locate_lobby() == 0:
-            while True:
-                pos_check(img)
-        # otherwise, the locateGameStart() function will start a new game.
-        else:
-            print('Starting new game')
-            locate_map_pic()
+        locate_lobby()
+        locate_map_pic()
+        pos_check(img)
     print("Brawlhalla isn't active!")
     sleep(2)

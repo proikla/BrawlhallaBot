@@ -15,15 +15,17 @@ def navigate_to(image, clicks, off_x=0, off_y=0):
         pt.click(clicks=clicks, interval=.3)
 
 
-# def image_check(image):
-#     if image is None:
-#         print("resume.png not found")
-#         print('Trying to open the menu')
-#         sleep(2)
-#         return None
-#     else:
-#         navigate_to('images/resume.png', 3)
-#         return 1
+def image_check(image):
+    if image is None:
+        print("resume.png not found")
+        print('Trying to open the menu')
+        sleep(2)
+        return None
+    else:
+        navigate_to('images/resume.png', 3)
+        return 1
+
+
 # exiting the pause (unused)
 def locate_pause_menu():
     pos = pt.locateCenterOnScreen('images/resume.png', confidence=.7)
@@ -124,6 +126,7 @@ def pos_check(image):
     return 0
 
 
+# new stuff
 def locate_map_pic():
     print('Trying to find map.png on screen')
     map_pic = 'images/map.png'
