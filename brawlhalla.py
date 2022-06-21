@@ -129,7 +129,6 @@ def pos_check(image):
 
 # new stuff
 def locate_map_pic():
-    print('Trying to find map.png on screen')
     map_pic = 'images/map.png'
     navigate_to(map_pic, 15)
     sleep(.3)
@@ -191,8 +190,11 @@ def add_bots():
 
 def lobby_setup():
     settings_image = pt.locateCenterOnScreen('images/x_settings.png', confidence=.7)
+    cgr = pt.locateCenterOnScreen('images/cgr.png', confidence=.7)
+    # if cgr is None:
+    #     print(f'cgr.png not found..')
+    #     return None
     if settings_image is None:
-        print(f'x_settings.png not found..')
         return None
     else:
         duration = .0
