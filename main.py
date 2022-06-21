@@ -32,11 +32,12 @@ if __name__ == '__main__':
 You chose {img}
 ''')
     sleep(3)
-    # lobby_setup()
+
     # the code will be executed while the active window is 'Brawlhalla'
     while pt.getActiveWindowTitle() == 'Brawlhalla':
         if locate_lobby() == 0:
             locate_map_pic()
-        pos_check(img)
+        if lobby_setup() is None:
+            pos_check(img)
     print("Brawlhalla isn't active!")
     sleep(2)
