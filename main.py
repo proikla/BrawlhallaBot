@@ -1,6 +1,5 @@
 import os
 
-import pyautogui
 from art import tprint
 from brawlhalla import *
 
