@@ -82,7 +82,7 @@ def to_stage(stage, con):
     do_input('space', .1, 'jumping')
     if con is False:
         pt.keyUp(key_press)
-    do_input('space', .1, 'jumping')
+    do_input('space', .1, 'jumpinajg')
     if con is False:
         pt.keyUp(key_press)
     do_input('space', .1, 'jumping')
