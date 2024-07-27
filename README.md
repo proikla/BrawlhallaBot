@@ -1,14 +1,21 @@
 # BrawlhallaBot
 Brawlhalla bot for grinding exp and money.
-This bot can farm some coins and exp while you sleep
+Originally was intended for personal use, but you can use it however you want.
+This bot can farm some coins and exp while you sleep. Works only while Brawlhalla window is active.
 
 ![image](https://user-images.githubusercontent.com/58581541/173185294-d33aad46-3b42-4788-a22b-69c82fb99547.png)
 
+## How does it work
+
 This simple python script searches for an image of your name in brawlhalla and manipulates your character based on the coordinates of the image.
 
-If you are on the "stage", the script will attack, but when you are "offstage", the script will return to the stage.
+If you are on the "stage", the script will attack, but when you are "offstage", the script will try to return to the stage.
+
+Making the same attack movements over and over again is surprisingly effective versus stupid vanilla Brawlhalla bots, so you'll often end up in the first place, earning some XP and coins.
 
 When the match is over script will start a new one.
+
+
 
 ## Set up
 ### Install git
@@ -48,6 +55,8 @@ the image must be in .png format
 
 Put this image to BrawlhallaBot/images
 
+NOTE: In this version of the script you must already have Big Thundergard Stadium as the last map played, so the game chooses it automatically
+
 # How to use
 
 ### Start script
@@ -59,12 +68,8 @@ start the script:
 ```
 python main.py
 ```
-enter the name of the picture and switch to the brawlhalla window. The script will be executed while the active window is brawlhalla.
+Enter the name of the picture and switch to the Brawlhalla window. The script will be executed while the active window is Brawlhalla.
 
 The script will automatically configure the lobby.
 
-Make sure you're using FullHd monitor (1920x1080). Make sure active window is brawlhalla. Make sure you are using Maximised mode. Make sure attack key is 'J', Heavy attack key is 'K', Aim Up key is 'W', Jump key is 'SPACE'.
-
-Apologies for my poor English
-
-*Do not judge strictly, this is my very first project*
+Make sure you're using a Full HD monitor (1920x1080). Ensure the active window is Brawlhalla and that you are in Maximized mode. Make sure the attack key is 'J', the heavy attack key is 'K', the aim up key is 'W', and the jump key is 'SPACE'.
