@@ -1,229 +1,197 @@
 import pyautogui as pt
 from time import sleep
+import random
+from pynput.keyboard import Key, Controller
+
+from pyautogui import locateCenterOnScreen, getActiveWindowTitle, moveRel, click
+
+# for 1080p, map specific offstage coordinates. (Big thundergard stadium)
+LEFT_OFFSTAGE_X = 420
+RIGHT_OFFSTAGE_X = 1500
+
+keyboard = Controller()
 
 
-# moves cursor to image
-def navigate_to(image, clicks, off_x=0, off_y=0):
-    pos = pt.locateCenterOnScreen(image, confidence=.7)
-    if pos is None:
-        print(f'{image} not found..')
-        return 0
-    else:
-        print(f'Moving to {image}')
-        pt.moveTo(pos, duration=.1)
-        pt.moveRel(pos, duration=.1)
-        sleep(1)
-        pt.click(clicks=clicks, interval=.1)
-        pt.click()
+def press_and_release(key: str,  presses: int = 1,interval: float = .1,) -> None:
+    "Presses key, sleeps for {duration}, releases key, sleeps again."
+
+    if presses > 1:
+        while presses:
+            press_and_release(key)
+            presses -= 1
+
+    elif presses == 1:
+        keyboard.press(key)
+        sleep(interval)
+        keyboard.release(key)
+        sleep(interval)
+
+    return None
+
+def keyDown(key: str) -> None:
+    keyboard.press(key)
+
+def keyUp(key: str) -> None:
+    keyboard.release(key)
+    
 
 
-def image_check(image):
-    if image is None:
-        print("resume.png not found")
-        print('Trying to open the menu')
-        sleep(2)
-        return None
-    else:
-        navigate_to('images/resume.png', 3)
-        return 1
+class GameCharacter:
+    def __init__(self, image, left_offstage_x, right_offstage_x):
+        self.image = image
+        self.on_stage = True
+        self.left_offstage_x = left_offstage_x
+        self.right_offstage_x = right_offstage_x
+        self.is_lobby_set_up = self.lobby_setup()
 
-
-# exiting the pause (unused)
-def locate_pause_menu():
-    pos = pt.locateCenterOnScreen('images/resume.png', confidence=.7)
-    if pos is None:
-        print("resume.png not found")
-        print('Trying to open the menu')
-        sleep(2)
-        return None
-    else:
-        navigate_to('images/resume.png', 3)
-        return 1
-
-
-# moves character
-def do_input(key_press, duration, action=''):
-    pt.keyDown(key_press)
-    if action == 'jumping':
-        print('Jumping')
-    if action == 'recovery':
-        print('Recovery')
-    if action == 'attack':
-        print('attack')
-    if action == 'shift':
-        print('shift')
-    if action == 'up':
-        print('up')
-    sleep(duration)
-    pt.keyUp(key_press)
-
-
-# getting position of the character
-def get_character_pos(image):
-    pos = pt.locateCenterOnScreen(image, confidence=.7)
-    if pos is None:
-        print(f'{image} not found..')
-        return None
-    else:
-        return pos
-
-
-# comes back to stage
-def to_stage(stage, con):
-    if stage == 'left':
-        key_press = 'd'
-    elif stage == 'right':
-        key_press = 'a'
-    else:
-        key_press = ''
-    print('Character on offstage')
-    pt.keyDown(key_press)
-    print(f'pressed key {key_press}')
-    do_input('space', .1, 'jumping')
-    if con is False:
-        pt.keyUp(key_press)
-    do_input('space', .1, 'jumpinajg')
-    if con is False:
-        pt.keyUp(key_press)
-    do_input('space', .1, 'jumping')
-    if con is False:
-        pt.keyUp(key_press)
-    do_input('k', .1, 'recovery')
-    if con is False:
-        pt.keyUp(key_press)
-    do_input('w', 0, 'up')
-    do_input('shift', 0, 'shift')
-    pt.keyUp(key_press)
-    if con is False:
-        pt.keyUp(key_press)
-
-
-# checking character position
-def pos_check(image):
-    while True:
-        pos = get_character_pos(image)
-        # IMAGE NOT FOUND
-        if pos is None:
-            do_input('space', .1, 'jumping')
-            break
-        # IMAGE FOUND
+    def navigate_to(self, clicks, duration=0.1) -> bool:
+        """Navigates cursor to the image and clicks it. Returns True if successful, otherwise False."""
+        pos = locateCenterOnScreen(self.image, confidence=0.7)
+        if not pos:
+            print(f'{self.image} not found..')
+            return False
         else:
-            x = pos.x
-            y = pos.y
-            print('X =', x)
-            print('Y =', y)
-            # OFFSTAGE LEFT
-            if x < 420:
-                to_stage('left', con=x < 420)
-                break
-            # OFFSTAGE RIGHT
-            elif x > 1500:
-                to_stage('right', con=x > 1500)
-                break
-            elif x > 420 or x < 1500:
-                attack()
-                break
-            break
-    return 0
+            print(f'Moving to {self.image}')
+            moveRel(pos, duration)
+            sleep(0.1)
+            click(clicks, interval=0.1)
+            return True
+
+    def get_character_pos(self):
+        """Gets the position of the character."""
+        try:
+            pos = locateCenterOnScreen(self.image, confidence=0.7)
+            return pos
+        except Exception as e:
+            # self.locate_lobby()
+            print(f'{self.image} not found..')
+
+    def is_onstage(self):
+        """Tries to return character on stage, returning player state (on_stage)."""
+        pos = self.get_character_pos()
+        if not pos:
+            return False
+
+        if pos.x < self.left_offstage_x:
+            self.on_stage = False
+            key_press = 'd'
+            keyDown(key_press)
+        elif pos.x > self.right_offstage_x:
+            self.on_stage = False
+            key_press = 'a'
+            keyDown(key_press)
+        else:
+            self.on_stage = True
+            return True
+
+        if not self.on_stage:
+            print('Character is offstage')
+
+            press_and_release(keyboard._Key.space)
+            
+            # recovery
+            press_and_release('k')
+
+            # dash
+            keyDown('w')
+            keyDown(keyboard._Key.shift)
+            keyUp('w')
+            keyUp(keyboard._Key.shift)
+            return self.is_onstage()
+        else:
+            keyUp(key_press)
+            return self.on_stage
+
+    def handle_character_position(self):
+        """Handles character position."""
+        if self.is_onstage():
+            self.attack()
 
 
-# new stuff
-def locate_map_pic():
-    map_pic = 'images/map.png'
-    navigate_to(map_pic, 15)
-    sleep(.3)
+    # rename function, fix finding map image.
+    def _locate_lobby(self):
+        """Returns True if in the lobby, otherwise False."""
+
+        try:
+            start_image_pos = locateCenterOnScreen(
+                'images/start.png', confidence=0.7)
+
+        except:
+            print("Failed to find the image of the map.")
+
+        else:
+            print('StartMenu located! Trying to start the game..')
+            self.navigate_to('images/map.png', 15)
+            sleep(0.3)
+            press_and_release('j', presses=3)
+            return True
+
+    def attack(self):
+        """Performs an attack action."""
+
+        # dash - sig to the right
+        keyDown('d')
+        keyDown(keyboard._Key.shift)
+        sleep(.1)
+        press_and_release('k')
+        keyUp('d')
+        keyUp(keyboard._Key.shift)
+
+        # pickup/throw weapon
+        press_and_release('h')
+
+        # wait
+        sleep(0.5)
+
+        # dash - sig to the left
+        keyDown('a')
+        keyDown(keyboard._Key.shift)
+        sleep(.1)
+        press_and_release('k')
+        keyUp('a')
+        keyUp(keyboard._Key.shift)
+        
+        # pickup/throw weapon
+        press_and_release('h')
+        sleep(0.5)
 
 
-# checking for being in the lobby
-def locate_lobby():
-    pos = pt.locateCenterOnScreen('images/start.png', confidence=.7)
-    if pos is None:
-        return 0
-    else:
-        print('StartMenu located! Trying to start the game..')
-        sleep(2)
-        locate_map_pic()
-        sleep(2)
-        for i in range(3):
-            sleep(.1)
-            pt.press('j')
-            print('pressed j')
-        sleep(2)
-        return 1
+    # TODO: rework
+    def add_bots(self):
+        """Adds bots to the game."""
+        for input in list('jjjvssssssjjjjjjjvj'):
+            if getActiveWindowTitle() =='Brawlhalla':
+                press_and_release(input,1)
+            else:
+                return False
 
+        # FIXME: choosing map doesnt work.
+        # self.locate_lobby()
 
-# speaks for itself
-def attack():
-    pt.keyDown('d')
-    pt.press('shift')
-    do_input('k', .0, 'attack')
-    pt.keyUp('d')
-    pt.press('h')
-    sleep(.5)
-    pt.keyDown('a')
-    pt.press('shift')
-    do_input('k', .0, 'attack')
-    pt.keyUp('a')
-    pt.press('h')
+    def lobby_setup(self):
+        """Returns True if lobby is set up, otherwise False."""
+        try:
+            settings_image_pos = locateCenterOnScreen(
+                'images/x_settings.png', confidence=0.7)
+        except Exception:
+            print(f'failed to find set up the lobby.')
+            return False
+        
+        if not settings_image_pos:
+            return False
+        
+        print('trying to set up lobby')
+        
+        duration = 0.1
 
+        # configuring settings
+        for input in list('jjjjjxsssaaasaaaaaaaasaaaaaasdssssssaaaj'):
+            if getActiveWindowTitle() =='Brawlhalla':
+                press_and_release(input,1,duration)
+            else:
+                return False
+        
 
-def add_bots():
-    pt.press('v')
-    duration = .4
-    sleep(duration)
-    for _ in range(7):
-        pt.press('j')
-        sleep(duration)
-        pt.press('j')
-        sleep(duration)
-        pt.press('s')
-        sleep(duration)
-        pt.press('a')
-        sleep(duration)
-        pt.press('j')
-        sleep(duration)
-        pt.press('s')
-        sleep(duration)
-    sleep(duration)
-    pt.press('v')
-
-
-def lobby_setup():
-    settings_image = pt.locateCenterOnScreen('images/x_settings.png', confidence=.7)
-    cgr = pt.locateCenterOnScreen('images/cgr.png', confidence=.7)
-    # if cgr is None:
-    #     print(f'cgr.png not found..')
-    #     return None
-    if settings_image is None:
-        return None
-    else:
-        duration = .0
-        # open settings tab
-        pt.press('x')
-        for _ in range(2):
-            pt.press('s')
-            sleep(duration)
-        # lives
-        for _ in range(3):
-            pt.press('a')
-            sleep(duration)
-        pt.press('s')
-        # match time
-        for _ in range(8):
-            pt.press('a')
-            sleep(duration)
-        pt.press('s')
-        # damage
-        for _ in range(6):
-            pt.press('a')
-            sleep(duration)
-        for _ in range(5):
-            pt.press('s')
-            sleep(duration)
-        for _ in range(3):
-            pt.press('a')
-            sleep(duration)
-        pt.press('j')
-        pt.press('j')
-        pt.press('j')
-        add_bots()
+        self.add_bots()
+        self.lobby_set_up = True
+        return True
