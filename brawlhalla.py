@@ -12,7 +12,7 @@ RIGHT_OFFSTAGE_X = 1500
 keyboard = Controller()
 
 
-def press_and_release(key: str,  presses: int = 1,interval: float = .1,) -> None:
+def press_and_release(key: str,  presses: int = 1, interval: float = .1,) -> None:
     "Presses key, sleeps for {duration}, releases key, sleeps again."
 
     if presses > 1:
@@ -28,12 +28,13 @@ def press_and_release(key: str,  presses: int = 1,interval: float = .1,) -> None
 
     return None
 
+
 def keyDown(key: str) -> None:
     keyboard.press(key)
 
+
 def keyUp(key: str) -> None:
     keyboard.release(key)
-    
 
 
 class GameCharacter:
@@ -88,7 +89,7 @@ class GameCharacter:
             print('Character is offstage')
 
             press_and_release(keyboard._Key.space)
-            
+
             # recovery
             press_and_release('k')
 
@@ -107,8 +108,8 @@ class GameCharacter:
         if self.is_onstage():
             self.attack()
 
-
     # rename function, fix finding map image.
+
     def _locate_lobby(self):
         """Returns True if in the lobby, otherwise False."""
 
@@ -150,18 +151,18 @@ class GameCharacter:
         press_and_release('k')
         keyUp('a')
         keyUp(keyboard._Key.shift)
-        
+
         # pickup/throw weapon
         press_and_release('h')
         sleep(0.5)
 
-
     # TODO: rework
+
     def add_bots(self):
         """Adds bots to the game."""
         for input in list('jjjvssssssjjjjjjjvj'):
-            if getActiveWindowTitle() =='Brawlhalla':
-                press_and_release(input,1)
+            if getActiveWindowTitle() == 'Brawlhalla':
+                press_and_release(input, 1)
             else:
                 return False
 
@@ -176,21 +177,20 @@ class GameCharacter:
         except Exception:
             print(f'failed to find set up the lobby.')
             return False
-        
+
         if not settings_image_pos:
             return False
-        
+
         print('trying to set up lobby')
-        
+
         duration = 0.1
 
         # configuring settings
         for input in list('jjjjjxsssaaasaaaaaaaasaaaaaasdssssssaaaj'):
-            if getActiveWindowTitle() =='Brawlhalla':
-                press_and_release(input,1,duration)
+            if getActiveWindowTitle() == 'Brawlhalla':
+                press_and_release(input, 1, duration)
             else:
                 return False
-        
 
         self.add_bots()
         self.lobby_set_up = True

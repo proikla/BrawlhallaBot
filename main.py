@@ -4,7 +4,6 @@ from art import tprint
 from brawlhalla import *
 
 
-
 # as described in the README, the program will try to
 # find your character on the screen using your name
 # letters, so you have to turn this on in the settings.
@@ -64,7 +63,7 @@ def get_img():
 
 
 # TODO: player.in_air: bool; player.below: bool
-# if in_air -> dont attack. 
+# if in_air -> dont attack.
 
 def main():
 
@@ -78,12 +77,11 @@ def main():
 
     # setting up the lobby:
     while pt.getActiveWindowTitle() != 'Brawlhalla':
-            print('brawlhalla isn\'t active')
-            sleep(.5)
-    
+        print('brawlhalla isn\'t active')
+        sleep(.5)
+
     sleep(1)
 
-    
     player = GameCharacter(img, LEFT_OFFSTAGE_X, RIGHT_OFFSTAGE_X)
 
     # handle game movements when lobby is set up
@@ -93,7 +91,6 @@ def main():
         else:
             print('brawlhalla isn\'t active')
             sleep(.5)
-
 
 
 if __name__ == '__main__':
