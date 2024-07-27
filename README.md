@@ -1,7 +1,7 @@
 # BrawlhallaBot
 Brawlhalla bot for grinding exp and money.
 Originally was intended for personal use, but you can use it however you want.
-This bot can farm some coins and exp while you sleep
+This bot can farm some coins and exp while you sleep. Works only while Brawlhalla window is active.
 
 ![image](https://user-images.githubusercontent.com/58581541/173185294-d33aad46-3b42-4788-a22b-69c82fb99547.png)
 
